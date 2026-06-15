@@ -81,26 +81,8 @@ FitFindr is an AI tool that allows users to shop for second-hand clothing based 
 ### Additional Tools (if any)
 
 <!-- Copy the block above for any tools beyond the required three -->
-### Tool 4: create_fit_card_1
-
-**What it does:**
-<!-- Describe what this tool does in 1–2 sentences -->
-- Displays a second summarized description of another outfit pair based on suggestions
-
-**Input parameters:**
-<!-- List each parameter, its type, and what it represents -->
-- `outfit` (description): Item selected from listing and suggested item pair to display another complete description of the OOTD (outfit-of-the-day). This will be different from the user's preferred choice.
-
-**What it returns:**
-<!-- Describe the return value -->
-- Returns a completed description of all selected items as well as its associated price.
-
-**What happens if it fails or returns nothing:**
-<!-- What should the agent do if the outfit data is incomplete? -->
-- returns nothing, notifies user to modify its parameter in the search-listing.
-
 ---
-### Tool 5: Price Comparison tool
+### Tool 4: Price Comparison tool
 
 **What it does:**
 <!-- Describe what this tool does in 1–2 sentences -->
@@ -122,16 +104,15 @@ FitFindr is an AI tool that allows users to shop for second-hand clothing based 
 
 ---
 
-### Tool 6: Trend awareness 
+### Tool 5: Trend awareness 
 
 **What it does:**
 <!-- Describe what this tool does in 1–2 sentences -->
-- Connects to popular fashion blogs as well as its accompanying social media pages to display popular style based on user's preference as well as similar style suggestions based on search listing and price
+- Generates trend context based on popular style based on user's preference as well as similar style suggestions based on search listing and price
 
 **Input parameters:**
 <!-- List each parameter, its type, and what it represents -->
 - `description` (str): "popular jeans pairings"
-- `site` (str): "blogs, social media sites"
 
 **What it returns:**
 <!-- Describe the return value -->
@@ -143,7 +124,7 @@ FitFindr is an AI tool that allows users to shop for second-hand clothing based 
 
 ---
 
-### Tool 7: Style profile memory
+### Tool 6: Style profile memory
 
 **What it does:**
 <!-- Describe what this tool does in 1–2 sentences -->
@@ -163,7 +144,7 @@ FitFindr is an AI tool that allows users to shop for second-hand clothing based 
 
 ---
 
-### Tool 8: Retry logic with fallback
+### Tool 7: Retry logic with fallback
 
 **What it does:**
 <!-- Describe what this tool does in 1–2 sentences -->
