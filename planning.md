@@ -16,18 +16,22 @@ You must have at least 3 tools. The three required tools are listed — add any 
 
 **What it does:**
 <!-- Describe what this tool does in 1–2 sentences -->
+FitFindr is an AI tool that allows users to shop for second-hand clothing based on the user's prompt. For instance, if a user is looking for a pair of jeans that cost $50 and a size 10, it will display items that meets the user's requirement, which will include the price and condition of the item, such as 'fair', 'excellent', and 'good'. In addition, it will display items that can be paired with the outfit for a complete look, for example 'green jeans pairs will with a white graphic T-shirt. However, if the no item matches the user's description, it (AI tool) will suggest to the user to refine the description prompt and try again.
 
 **Input parameters:**
 <!-- List each parameter, its type, and what it represents -->
-- `description` (str): ...
-- `size` (str): ...
-- `max_price` (float): ...
+- `description` (str): "black Levi jeans with flared legs"
+- `size` (str): "in a size 8 or 10"
+- `max_price` (float): "costing no more that $60"
 
 **What it returns:**
 <!-- Describe the return value — what fields does a result contain? -->
+- Result show display black Levi jeans with flared legs in both sizes, 8 and 10, costing $60 or less.
 
 **What happens if it fails or returns nothing:**
 <!-- What should the agent do if no listings match? -->
+- System failure - It will display a message stating that it's unable to complete the request and the user should try again later.
+- Item not found - notifies the user that no item description matches user's prompt and will suggest that the user modify search parameters and try again.
 
 ---
 
@@ -35,17 +39,22 @@ You must have at least 3 tools. The three required tools are listed — add any 
 
 **What it does:**
 <!-- Describe what this tool does in 1–2 sentences -->
+- In general, this functions as a clothing fitness look that displays several items that the user can pair with results from search listings. For example, 'pair jeans with this graphic tee and trainers for a night-out'.
 
 **Input parameters:**
 <!-- List each parameter, its type, and what it represents -->
-- `new_item` (dict): ...
-- `wardrobe` (dict): ...
+- `new_item` (dict): graphic tees, T-shirt, blouse, tank-tops, blazers
+- `wardrobe` (dict): casual, retro, business-casual, formal
+- `shoes` (dict): booths, trainers, high-heels, flats, 
 
 **What it returns:**
 <!-- Describe the return value -->
+- Returns several suggested items that can be paired with jeans to create the user's desired look
 
 **What happens if it fails or returns nothing:**
 <!-- What should the agent do if the wardrobe is empty or no outfit can be suggested? -->
+- System failure - It will display a message stating that it's unable to complete the request and the user should try again later.
+- Item not found - notifies the user that it cannot provide any suggestions and ask the user for input modification.
 
 ---
 
@@ -53,6 +62,7 @@ You must have at least 3 tools. The three required tools are listed — add any 
 
 **What it does:**
 <!-- Describe what this tool does in 1–2 sentences -->
+- Provides a 
 
 **Input parameters:**
 <!-- List each parameter, its type, and what it represents -->
@@ -69,6 +79,20 @@ You must have at least 3 tools. The three required tools are listed — add any 
 ### Additional Tools (if any)
 
 <!-- Copy the block above for any tools beyond the required three -->
+### Tool 3: create_fit_card_1
+
+**What it does:**
+<!-- Describe what this tool does in 1–2 sentences -->
+
+**Input parameters:**
+<!-- List each parameter, its type, and what it represents -->
+- `outfit` (...): ...
+
+**What it returns:**
+<!-- Describe the return value -->
+
+**What happens if it fails or returns nothing:**
+<!-- What should the agent do if the outfit data is incomplete? -->
 
 ---
 
