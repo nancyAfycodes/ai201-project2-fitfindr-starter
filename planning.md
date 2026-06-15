@@ -62,44 +62,131 @@ FitFindr is an AI tool that allows users to shop for second-hand clothing based 
 
 **What it does:**
 <!-- Describe what this tool does in 1–2 sentences -->
-- Provides a 
+- Provides a summarized description of the completed outfit look based on user selections
 
 **Input parameters:**
 <!-- List each parameter, its type, and what it represents -->
-- `outfit` (...): ...
+- `outfit` (description): Item selected from listing and suggested item pair to display a complete description of the OOTD (outfit-of-the-day).
 
 **What it returns:**
 <!-- Describe the return value -->
+- Returns a completed description of all selected items as well as its associated price.
 
 **What happens if it fails or returns nothing:**
 <!-- What should the agent do if the outfit data is incomplete? -->
+- returns nothing, notifies user to modify its parameter in the search-listing.
 
 ---
 
 ### Additional Tools (if any)
 
 <!-- Copy the block above for any tools beyond the required three -->
-### Tool 3: create_fit_card_1
+### Tool 4: create_fit_card_1
 
 **What it does:**
 <!-- Describe what this tool does in 1–2 sentences -->
+- Displays a second summarized description of another outfit pair based on suggestions
 
 **Input parameters:**
 <!-- List each parameter, its type, and what it represents -->
-- `outfit` (...): ...
+- `outfit` (description): Item selected from listing and suggested item pair to display another complete description of the OOTD (outfit-of-the-day). This will be different from the user's preferred choice.
 
 **What it returns:**
 <!-- Describe the return value -->
+- Returns a completed description of all selected items as well as its associated price.
 
 **What happens if it fails or returns nothing:**
 <!-- What should the agent do if the outfit data is incomplete? -->
+- returns nothing, notifies user to modify its parameter in the search-listing.
+
+---
+### Tool 5: Price Comparison tool
+
+**What it does:**
+<!-- Describe what this tool does in 1–2 sentences -->
+- Displays, based on user's chosen item, comparable price of a similar item, which includes, style and/or color. It will also include prices slightly higher than the user's preference. This will be based on search-listing tool (above)
+
+**Input parameters:**
+<!-- List each parameter, its type, and what it represents -->
+- `description` (str): "blue Levi jeans with flared legs"
+- `size` (str): "in a size 8 or 10"
+- `max_price` (float): "price shown will be capped at 20% more than the original price shown in the search-listing tool"
+
+**What it returns:**
+<!-- Describe the return value -->
+- Returns a completed description of all selected items as well as its associated price.
+
+**What happens if it fails or returns nothing:**
+<!-- What should the agent do if the outfit data is incomplete? -->
+- returns nothing, notifies user to modify its parameter in the search-listing.
 
 ---
 
+### Tool 6: Trend awareness 
+
+**What it does:**
+<!-- Describe what this tool does in 1–2 sentences -->
+- Connects to popular fashion blogs as well as its accompanying social media pages to display popular style based on user's preference as well as similar style suggestions based on search listing and price
+
+**Input parameters:**
+<!-- List each parameter, its type, and what it represents -->
+- `description` (str): "popular jeans pairings"
+- `site` (str): "blogs, social media sites"
+
+**What it returns:**
+<!-- Describe the return value -->
+- Returns popular styles that is based on user's preference in search-listing. This will reference the price comparison tool, which will allow the user to compare price of similar style items
+
+**What happens if it fails or returns nothing:**
+<!-- What should the agent do if the outfit data is incomplete? -->
+- returns nothing, notifies user to modify its parameter in the search-listing.
+
+---
+
+### Tool 7: Style profile memory
+
+**What it does:**
+<!-- Describe what this tool does in 1–2 sentences -->
+- This saves user's preferences based on search listing and then uses it to make other style suggestion. The user is able to reference it at a later time. 
+
+**Input parameters:**
+<!-- List each parameter, its type, and what it represents -->
+- `storage` (str): reference to saved user preferences in the search listing
+
+**What it returns:**
+<!-- Describe the return value -->
+- Returns a description of saved preferences and suggestions from the search listing
+
+**What happens if it fails or returns nothing:**
+<!-- What should the agent do if the outfit data is incomplete? -->
+- returns nothing, notifies user to modify its parameter in the search-listing.
+
+---
+
+### Tool 8: Retry logic with fallback
+
+**What it does:**
+<!-- Describe what this tool does in 1–2 sentences -->
+- If search_listing returns no results, the AI tool can remove filters and performs a new search. It will alert the user of the filters that were removed.
+
+**Input parameters:**
+<!-- List each parameter, its type, and what it represents -->
+- It will be triggered when search_listing returns no items based on user input
+
+**What it returns:**
+<!-- Describe the return value -->
+- Returns a generalized result, based on the modified search_listing input
+
+**What happens if it fails or returns nothing:**
+<!-- What should the agent do if the outfit data is incomplete? -->
+- Alerts the user that no items were found after modification(s).
+
+---
 ## Planning Loop
 
 **How does your agent decide which tool to call next?**
 <!-- Describe the logic your planning loop uses. What does it look at? What conditions change its behavior? How does it know when it's done? -->
+- Based on user prompt using search_listing, calls are made to suggest_outfit and price companion tool to show comparable prices of the same item as well as similar items. Once the user selects the desired item(s). Once the user selects desired items, it will call create_fit_card to create a look and save it in the style_profile_memory for future reference. It'll also reference trend awareness tool to provide additional styles and suggestions based on current trends. If the original prompts fails to produce any result, the retry_logic_with_fallback is activated, and the loop repeats again with the modified suggestions. If no result is generated after modifications from search_listing, then the retry_logic_with_fallback is called again with the message that no results were found.
 
 ---
 
@@ -107,6 +194,7 @@ FitFindr is an AI tool that allows users to shop for second-hand clothing based 
 
 **How does information from one tool get passed to the next?**
 <!-- Describe how your agent stores and accesses state within a session. What data is tracked? How is it passed between tool calls? -->
+- If the user selects an item based on result from the search_listing, it saves the item in the suggest_outfit tool, which can be referenced by the trend_awareness tool to generated other suggestions. If no result are found,it will call the retry_logic_with_fallback to retry again with streamlined preference from search_listing. 
 
 ---
 
