@@ -35,7 +35,7 @@ def _chat(prompt: str, temperature: float = 0.7) -> str:
     """Helper: single-turn Groq chat call. Returns response text."""
     client = _get_groq_client()
     response = client.chat.completions.create(
-        model="llama3-8b-8192",
+        model="llama-3.1-8b-instant",
         messages=[{"role": "user", "content": prompt}],
         temperature=temperature,
         max_tokens=600,
