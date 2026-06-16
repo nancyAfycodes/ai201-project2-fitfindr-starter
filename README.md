@@ -163,3 +163,7 @@ pytest tests/ -v
 | `flowy midi skirt under $40` | Happy path — category keyword |
 | `black combat boots size 8` | Happy path — shoes category |
 | `designer ballgown size XXS under $5` | No-results path — triggers full fallback |
+
+---
+## Video Demo
+[Demo Video](https://youtu.be/EDhRE7JD9E8)
